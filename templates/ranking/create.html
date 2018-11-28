@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} New Player {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="name">Name</label>
+    <input name="name" id="name" value="{{ request.form['name'] }}" required autocomplete="off" placeholder="Name">
+    <br>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

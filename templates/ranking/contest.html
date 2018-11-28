@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} Which name did you like the most? {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+      {% for name in names %}
+          <button class="select-player"  name="name" value="{{ name['name'] }}" type="submit">
+              {{ name['name'] }}
+          </button>
+      {% endfor %}
+  </form>
+{% endblock %}

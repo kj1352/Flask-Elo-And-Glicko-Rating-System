@@ -1,0 +1,34 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>Flaskr</h1>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user['username'] }}</span></li>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+    {% endif %}
+  </ul>
+</nav>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('blog.index') }}"> All Posts </a></li>
+        <li><a href="{{ url_for('ranking.index') }}"> Player Rankings </a></li>
+        <li><a href="{{ url_for('ranking.create') }}"> Create Player </a></li>
+        <li><a href="{{ url_for('ranking.contest') }}"> <strong> Play Contest </strong> </a></li>
+    </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
